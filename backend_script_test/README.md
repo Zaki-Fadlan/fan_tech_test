@@ -36,23 +36,13 @@ yarn install
 ```
 This will install the necessary dependencies listed in the package.json file, including express, prisma, and other required packages.
 
-## Step 3: Configure the Environment Variables
-Copy the .env.example file and create a new .env file:
+##  Step 3:Set Up Prisma
+make database called postgres or depends which database you want, you can edit database name at .env file
 ```bash
-cp .env.example .env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/{database_name}?schema=public"
 ```
-
-## : Set Up Prisma
-Generate Prisma Client
-Run the following command to generate the Prisma client, which will be used to interact with the database:
 ```bash
-npx prisma generate
-```
-Migrate the Database
-Prisma uses migrations to set up and manage your database schema. If you have existing migrations, you can run them using:
-
-```bash
-npx prisma migrate deploy
+npx prisma migrate reset --force
 ```
 To create a new migration after modifying the schema, run:
 
@@ -60,14 +50,6 @@ To create a new migration after modifying the schema, run:
 npx prisma migrate dev --name init
 ```
 This will generate the migration file and apply it to your database.
-
-(Optional) Seed the Database
-If you want to seed your database with initial data, you can run the seed script (if available):
-```
-bash
-npx prisma db seed
-```
-Check prisma/seed.ts for any data seeding logic.
 
 ## Step 5: Run the Project
 After setting everything up, you can run the project locally:
