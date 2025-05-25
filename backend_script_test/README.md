@@ -1,9 +1,6 @@
 npx prisma migrate reset --force
 npx prisma migrate dev --name init
 npx prisma generate
-npx prisma migrate reset --force
-npx prisma migrate dev --name init
-npx prisma generate
 # Project Setup & Installation
 
 This guide will walk you through the setup, installation, and how to run the project. The project is built with **Node.js**, **Express**, and **Prisma** as the ORM for database management.
@@ -24,6 +21,7 @@ First, clone the repository to your local machine:
 ```bash
 git clone https://github.com/Zaki-Fadlan/fan_tech_test.git
 cd fan_tech_test
+cd backend_script_test
 ```
 ## Step 2: Install Dependencies
 Install the project dependencies using either npm or yarn:
