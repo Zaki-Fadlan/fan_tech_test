@@ -67,6 +67,38 @@ yarn dev
 This document provides the details of the available routes in the application. Each route is described with the corresponding HTTP method, URL, required parameters, and expected responses.
 
 ## Authentication Routes
+### `POST /api/auth/register`
+
+- **Description**: Register a new user in the system.
+- **Request Body**:
+    ```json
+    {
+      "name": "John Doe",
+      "email": "spv@user",
+      "npp": "123456789",
+      "password": "P@ssw0rd123"
+    }
+    ```
+    Or if the user have supervisor
+    ```json
+    {
+      "name": "John Doe",
+      "email": "spv@user",
+      "npp": "123456789",
+      "npp_supervisor": "123456789",
+      "password": "P@ssw0rd123"
+    }
+    ```
+- **Response**:
+    - **201 Created**:
+        ```json
+        {
+          "message": "User registered successfully"
+        }
+        ```
+    - **400 Bad Request**: If required fields (email, password, name) are missing or invalid.
+
+---
 
 ### `POST /api/auth/login`
 
@@ -74,8 +106,8 @@ This document provides the details of the available routes in the application. E
 - **Request Body**:
     ```json
     {
-      "email": "user@example.com",
-      "password": "your-password"
+      "email": "spv@user",
+      "password": "P@ssw0rd123"
     }
     ```
 - **Response**:
@@ -88,28 +120,6 @@ This document provides the details of the available routes in the application. E
         ```
     - **400 Bad Request**: If email or password is missing or invalid.
     - **401 Unauthorized**: If email or password is incorrect.
-
----
-
-### `POST /api/auth/register`
-
-- **Description**: Register a new user in the system.
-- **Request Body**:
-    ```json
-    {
-      "email": "user@example.com",
-      "password": "your-password",
-      "name": "User Name"
-    }
-    ```
-- **Response**:
-    - **201 Created**:
-        ```json
-        {
-          "message": "User registered successfully"
-        }
-        ```
-    - **400 Bad Request**: If required fields (email, password, name) are missing or invalid.
 
 ---
 
@@ -169,7 +179,7 @@ This document provides the details of the available routes in the application. E
 
 ---
 
-### `PUT /api/presences/:id`
+### `PUT /api/presences/:id?is_approve={true or false}`
 
 - **Description**: Approve or reject a specific presence request by its ID.
 - **Middleware**: Requires authentication (`authenticateToken`).
